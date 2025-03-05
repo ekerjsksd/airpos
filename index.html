@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="awesomplete.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fly in Flights</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://media.istockphoto.com/id/185331541/photo/sunrise-flight.jpg?s=612x612&w=0&k=20&c=pxyKNaVaX3zdRN8y428UN5KVnd4t9L3zJUCCAB_dRYw=') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .wrapper {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 1100px;
+            background: rgba(255, 255, 255, 0.4);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
+        }
+        .container {
+            width: 60%;
+        }
+        .info-panel {
+            width: 35%;
+            background: rgba(200, 230, 255, 0.4);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        h2 {
+            text-align: center;
+            color: #0056b3;
+        }
+        label {
+            font-weight: bold;
+            color: #003366;
+        }
+        .traveler-section {
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 15px;
+        }
+        .name-container {
+            display: flex;
+            gap: 10px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+            font-size: 18px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .trip-type-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        .trip-type-label {
+            font-weight: 600;
+            color: #2C3E50;
+            margin-right: 10px;
+        }
+        .trip-type-option {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border: 1px solid #AED6F1;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+        .trip-type-option input[type="radio"] {
+            display: none;
+        }
+        .trip-type-option label {
+            margin-left: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            color: #333;
+        }
+        .trip-type-option.selected {
+            border-color: #3498DB;
+            background-color: #EBF5FB;
+        }
+        .trip-type-option:hover {
+            border-color: #3498DB;
+        }
+        .from-to-container {
+            display: flex;
+            gap: 10px;
+        }
+        .from-to-container div {
+            flex: 1;
+        }
+        .date-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .date-container div {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <h2>Fly in Flights</h2>
+            <form id="bookingForm">
+                <div class="trip-type-container">
+                    <label class="trip-type-label">Trip Type:</label>
+                    <div class="trip-type-option selected" id="roundTripOption">
+                        <input type="radio" id="roundTrip" name="tripType" value="roundTrip" checked onclick="toggleReturnDate()">
+                        <label for="roundTrip">Round Trip</label>
+                    </div>
+                    <div class="trip-type-option" id="oneWayOption">
+                        <input type="radio" id="oneWay" name="tripType" value="oneWay" onclick="toggleReturnDate()">
+                        <label for="oneWay">One Way</label>
+                    </div>
+                </div>
+                <div class="from-to-container">
+                    <div>
+                        <label for="from">From:</label>
+                        <input type="text" id="from" name="from" class="awesomplete" required>
+                    </div>
+                    <div>
+                        <label for="to">To:</label>
+                        <input type="text" id="to" name="to" class="awesomplete" required>
+                    </div>
+                </div>
+               <div class="date-container" id="dateContainer">
+    <div>
+        <label for="departureDate">Departure Date:</label>
+        <input type="date" id="departureDate" name="departureDate" required>
+    </div>
+    <div id="returnDateDiv">
+        <label for="returnDate">Return Date:</label>
+        <input type="date" id="returnDate" name="returnDate" required>
+    </div>
+</div>
+                <div id="passengerList">
+                    <div class="traveler-section">Passenger 1:</div>
+                    <div class="name-container">
+                        <div>
+                            <label for="firstName1">First Name:</label>
+                            <input type="text" id="firstName1" name="firstName1" required>
+                        </div>
+                        <div>
+                            <label for="lastName1">Last Name:</label>
+                            <input type="text" id="lastName1" name="lastName1" required>
+                        </div>
+                    </div>
+                    <label for="gender1">Gender:</label>
+                    <select id="gender1" name="gender1" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <label for="dob1">Date of Birth:</label>
+                    <input type="date" id="dob1" name="dob1" required>
+                </div>
+                <button type="button" onclick="addPassenger()">Add More Passengers</button>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </form>
+        </div>
+        <div class="info-panel">
+            <h2>Travel Protection</h2>
+            <p>Comprehensive travel insurance to cover unexpected cancellations, medical emergencies, and more.</p>
+            <h2>Low Baggage Protection</h2>
+            <p>Secure coverage for lost or delayed baggage.</p>
+            <h2>Total Cost</h2>
+            <p id="totalCost"><strong>$100 USD</strong></p>
+            <button type="submit" form="bookingForm">Submit Booking</button>
+        </div>
+    </div>
+    <script>
+        let travelerCount = 1;
+
+      function toggleReturnDate() {
+        const roundTripRadio = document.getElementById("roundTrip");
+        const returnDateDiv = document.getElementById("returnDateDiv");
+        const roundTripOption = document.getElementById("roundTripOption");
+        const oneWayOption = document.getElementById("oneWayOption");
+
+        if (roundTripRadio.checked) {
+            returnDateDiv.style.display = "block"; // Show return date
+            roundTripOption.classList.add("selected");
+            oneWayOption.classList.remove("selected");
+        } else {
+            returnDateDiv.style.display = "none"; // Hide return date
+            oneWayOption.classList.add("selected");
+            roundTripOption.classList.remove("selected");
+        }
+    }
+
+        function addPassenger() {
+            travelerCount++;
+            let passengerList = document.getElementById("passengerList");
+            let newPassenger = document.createElement("div");
+            newPassenger.innerHTML = `<div class="traveler-section">Passenger ${travelerCount}:</div>
+                                        <div class="name-container">
+                                            <div>
+                                                <label for="firstName${travelerCount}">First Name:</label>
+                                                <input type="text" id="firstName${travelerCount}" name="firstName${travelerCount}" required>
+                                            </div>
+                                            <div>
+                                                <label for="lastName${travelerCount}">Last Name:</label>
+                                                <input type="text" id="lastName${travelerCount}" name="lastName${travelerCount}" required>
+                                            </div>
+                                        </div>
+                                        <label for="gender${travelerCount}">Gender:</label>
+                                        <select id="gender${travelerCount}" name="gender${travelerCount}" required>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                        <label for="dob${travelerCount}">Date of Birth:</label>
+                                        <input type="date" id="dob${travelerCount}" name="dob${travelerCount}" required>`;
+            passengerList.appendChild(newPassenger);
+        }
+
+        // Initialize return date state on page load
+        toggleReturnDate();
+
+        // Add event listeners for trip type radio buttons
+        document.getElementById("roundTrip").addEventListener("change", toggleReturnDate);
+        document.getElementById("oneWay").addEventListener("change", toggleReturnDate);
+    </script>
+    <script src="awesomplete.min.js"></script>
+    <script>
+        fetch('data.json')
+            .then(response => response.json())
+            .then(airports => {
+                new Awesomplete(document.getElementById('from'), {
+                    list: airports,
+                    minChars: 2
+                });
+                new Awesomplete(document.getElementById('to'), {
+                    list: airports,
+                    minChars: 2
+                });
+            });
+    </script>
+</body>
+</html>
