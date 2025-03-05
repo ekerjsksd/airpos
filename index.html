@@ -205,42 +205,7 @@
         </div>
     </div>
     <script>
-        <script>
-    
-
-    document.getElementById("bookingForm").addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent default form submission
-
-        let formData = new FormData(this); // Get all form data
-
-        let urlEncoded = new URLSearchParams(formData).toString();
-
-        fetch('https://airpos.onrender.com/send_email.php', { // Corrected URL
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded' // Changed content type
-            },
-            body: urlEncoded
-        })
-        .then(response => response.text()) // Get text response
-        .then(data => {
-            if (data === 'Email sent successfully') {
-                alert('Your flight booking secure form is completed');
-                // Optionally, clear the form or redirect the user
-            } else {
-                alert(data); // Display error message from PHP
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred. Please try again later.');
-        });
-    });
-
-
-
-
-        let travelerCount = 1;
+            let travelerCount = 1;
 
       function toggleReturnDate() {
         const roundTripRadio = document.getElementById("roundTrip");
@@ -259,6 +224,9 @@
         }
     }
 
+
+
+        
         function addPassenger() {
             travelerCount++;
             let passengerList = document.getElementById("passengerList");
@@ -291,6 +259,37 @@
         // Add event listeners for trip type radio buttons
         document.getElementById("roundTrip").addEventListener("change", toggleReturnDate);
         document.getElementById("oneWay").addEventListener("change", toggleReturnDate);
+
+
+        document.getElementById("bookingForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        let formData = new FormData(this); // Get all form data
+
+        let urlEncoded = new URLSearchParams(formData).toString();
+
+        fetch('https://airpos.onrender.com/send_email.php', { // Corrected URL
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded' // Changed content type
+            },
+            body: urlEncoded
+        })
+        .then(response => response.text()) // Get text response
+        .then(data => {
+            if (data === 'Email sent successfully') {
+                alert('Your flight booking secure form is completed');
+                // Optionally, clear the form or redirect the user
+            } else {
+                alert(data); // Display error message from PHP
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again later.');
+        });
+    });
+
     </script>
     <script src="awesomplete.min.js"></script>
     <script>
