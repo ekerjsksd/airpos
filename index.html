@@ -271,6 +271,37 @@
                     minChars: 2
                 });
             });
+
+        <script>
+    // ... (mailphp) ...
+
+    document.getElementById("bookingForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        let formData = new FormData(this); // Get all form data
+
+        let urlEncoded = new URLSearchParams(formData).toString();
+
+        fetch('email.php', { // Corrected URL
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded' // Changed content type
+            },
+            body: urlEncoded
+        })
+        .then(response => response.text()) // Get text response
+        .then(data => {
+            alert(data); // Display response from PHP
+            // Optionally, clear the form or redirect the user
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again later.');
+        });
+    });
+
+   
+
     </script>
 </body>
 </html>
