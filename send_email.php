@@ -2,7 +2,7 @@
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $formData = $_POST;
 
-    $to = 'your-email@example.com'; // Replace with your email address
+    $to = 'karangpta3@gmail.com'; // Replace with your email address
     $subject = 'New Flight Booking';
     $message = '';
 
@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                'X-Mailer: PHP/' . phpversion();
 
     if (mail($to, $subject, $message, $headers)) {
-        echo 'Email sent successfully';
+        echo 'Email sent successfully'; // Exact match to js
     } else {
         http_response_code(500); // Internal Server Error
         echo 'Failed to send email';
