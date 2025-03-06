@@ -299,6 +299,7 @@
     </script>
     <script src="awesomplete.min.js"></script>
     <script>
+        setTimeout(function() {
         fetch('data.json')
             .then(response => response.json())
             .then(airports => {
@@ -311,6 +312,7 @@
                     minChars: 2
                 });
             });
+            }, 100); // Delay by 100 milliseconds (adjust as needed)
     </script>
            
 <script>
