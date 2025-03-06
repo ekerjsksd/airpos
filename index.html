@@ -99,11 +99,22 @@
             background: #0056b3;
         }
         .trip-type-container {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+@media (min-width: 576px) {
+    .trip-type-container {
+        flex-wrap: nowrap; /* Prevent wrapping on desktop */
+    }
+    .trip-type-option label {
+        display: block; /* Make labels block-level on desktop */
+        width: 100%; /* Take full width of the option container */
+    }
+}
         }
         .trip-type-label {
             font-weight: 600;
@@ -188,7 +199,8 @@
 .date-container > div,
 .trip-type-container > div,
 .name-container > div {
-    flex: 1; /* Distribute space evenly */
+   flex: 1;
+    min-width: calc(50% - 5px);
 }
 
 /* Adjustments for Trip Type buttons */
