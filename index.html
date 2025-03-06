@@ -147,7 +147,18 @@
         align-items: flex-start; /* Align items to the top */
     }
 }
-
+.from-container,
+.to-container {
+    display: inline-block;
+    width: 100%; /* Full width on mobile */
+    vertical-align: top;
+}
+        @media (min-width: 576px) {
+    .from-container,
+    .to-container {
+        width: 49%; /* Half width on desktop */
+    }
+}
 .from-container,
 .to-container {
     display: inline-block; /* Change display to inline-block */
