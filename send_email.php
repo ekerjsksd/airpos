@@ -1,27 +1,34 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $formData = $_POST;
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $tripType = $_POST['tripType'];
+    $from = $_POST['from'];
+    $to = $_POST['to'];
+    $departure = $_POST['departure'];
+    $return = isset($_POST['return']) ? $_POST['return'] : 'N/A';
 
-    $to = 'karangpta3@gmail.com'; // Replace with your email address
-    $subject = 'New Flight Booking';
-    $message = '';
+    $toEmail = "karangpta3@gmail.com"; // Replace with your email
+    $subject = "New Flight Booking Request";
+    $headers = "From: no-reply@yourdomain.com\r\n";
+    $headers .= "Reply-To: no-reply@yourdomain.com\r\n";
+    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-    foreach ($formData as $key => $value) {
-        $message .= "$key: $value\n";
-    }
+    $message = "Flight Booking Details:\n\n";
+    $message .= "First Name: $firstName\n";
+    $message .= "Last Name: $lastName\n";
+    $message .= "Trip Type: $tripType\n";
+    $message .= "From: $from\n";
+    $message .= "To: $to\n";
+    $message .= "Departure Date: $departure\n";
+    $message .= "Return Date: $return\n\n";
+    $message .= "Thank you for booking with us!";
 
-    $headers = 'From: webform@yourdomain.com' . "\r\n" .
-               'Reply-To: webform@yourdomain.com' . "\r\n" .
-               'X-Mailer: PHP/' . phpversion();
-
-    if (mail($to, $subject, $message, $headers)) {
-        echo 'Email sent successfully';
+    // Send email
+    if (mail($toEmail, $subject, $message, $headers)) {
+        echo "<script>alert('Your flight booking has been successfully completed!'); window.location.href='index.html';</script>";
     } else {
-        http_response_code(500); // Internal Server Error
-        echo 'Failed to send email';
+        echo "<script>alert('Error! Booking failed. Please try again.'); window.location.href='index.html';</script>";
     }
-} else {
-    http_response_code(405); // Method Not Allowed
-    echo 'Method not allowed';
 }
 ?>
