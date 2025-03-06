@@ -122,42 +122,43 @@
             margin-right: 10px;
         }
         
-       .trip-type-option {
+    .trip-type-option {
     display: flex;
     align-items: center;
-    justify-content: center; /* Center text horizontally */
-    padding: 5px 10px; /* Reduced padding */
+    justify-content: center;
+    padding: 8px 12px; /* Consistent padding */
     border: 1px solid #AED6F1;
     border-radius: 8px;
     cursor: pointer;
     transition: border-color 0.3s ease, background-color 0.3s ease;
-    font-size: 14px; /* Smaller font size */
+    font-size: 14px;
+    width: 48%; /* Consistent width with gap */
+    box-sizing: border-box; /* Include padding and border in width */
 }
-        .trip-type-option label {
-    margin: 0; /* Remove default margin */
+
+.trip-type-option input[type="radio"] {
+    display: none; /* Hide radio buttons */
+}
+
+.trip-type-option label {
+    margin: 0;
 }
 
 @media (min-width: 576px) {
     .trip-type-container {
         flex-wrap: nowrap;
     }
-        .trip-type-option input[type="radio"] {
-            display: none;
-        }
     .trip-type-option {
-        padding: 8px 12px; /* Slightly larger padding on desktop */
-        font-size: 16px; /* Slightly larger font size on desktop */
+        padding: 8px 12px;
+        font-size: 16px;
+        width: auto; /* Auto width on desktop */
     }
     .trip-type-option label {
         display: block;
         width: 100%;
     }
-        .trip-type-option label {
-            margin-left: 10px;
-            cursor: pointer;
-            font-weight: 500;
-            color: #333;
-        }
+}
+
         .trip-type-option.selected {
             border-color: #3498DB;
             background-color: #72A4BD;
