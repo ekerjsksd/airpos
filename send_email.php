@@ -1,34 +1,41 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $tripType = $_POST['tripType'];
-    $from = $_POST['from'];
-    $to = $_POST['to'];
-    $departure = $_POST['departure'];
-    $return = isset($_POST['return']) ? $_POST['return'] : 'N/A';
+    $to = "your-email@example.com"; // Replace with your actual email
+    $subject = "New Flight Booking";
 
-    $toEmail = "karangpta3@gmail.com"; // Replace with your email
-    $subject = "New Flight Booking Request";
-    $headers = "From: no-reply@yourdomain.com\r\n";
-    $headers .= "Reply-To: no-reply@yourdomain.com\r\n";
-    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    // Collect form data
+    $tripType = isset($_POST["tripType"]) ? $_POST["tripType"] : 'Not provided';
+    $from = isset($_POST["from"]) ? $_POST["from"] : 'Not provided';
+    $toPlace = isset($_POST["to"]) ? $_POST["to"] : 'Not provided';
+    $departure = isset($_POST["departure"]) ? $_POST["departure"] : 'Not provided';
+    $return = isset($_POST["return"]) ? $_POST["return"] : 'Not provided';
 
-    $message = "Flight Booking Details:\n\n";
-    $message .= "First Name: $firstName\n";
-    $message .= "Last Name: $lastName\n";
-    $message .= "Trip Type: $tripType\n";
-    $message .= "From: $from\n";
-    $message .= "To: $to\n";
-    $message .= "Departure Date: $departure\n";
-    $message .= "Return Date: $return\n\n";
-    $message .= "Thank you for booking with us!";
+    $message = "
+        <html>
+        <head><title>Flight Booking Details</title></head>
+        <body>
+            <h2>Flight Booking Confirmation</h2>
+            <p><strong>Trip Type:</strong> $tripType</p>
+            <p><strong>From:</strong> $from</p>
+            <p><strong>To:</strong> $toPlace</p>
+            <p><strong>Departure Date:</strong> $departure</p>
+            <p><strong>Return Date:</strong> $return</p>
+        </body>
+        </html>
+    ";
 
-    // Send email
-    if (mail($toEmail, $subject, $message, $headers)) {
-        echo "<script>alert('Your flight booking has been successfully completed!'); window.location.href='index.html';</script>";
+    // Email Headers
+    $headers = "MIME-Version: 1.0" . "\r\n";
+    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+    $headers .= "From: noreply@yourdomain.com" . "\r\n"; // Change to a valid email
+
+    // Send Email
+    if (mail($to, $subject, $message, $headers)) {
+        echo "success";
     } else {
-        echo "<script>alert('Error! Booking failed. Please try again.'); window.location.href='index.html';</script>";
+        echo "error";
     }
+} else {
+    echo "invalid";
 }
 ?>
