@@ -176,20 +176,31 @@
     box-sizing: border-box;
     font-size: 14px; /* Smaller font size */
 }
-        .date-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        @media (min-width: 576px) {
-            .date-container {
-                flex-direction: row;
-            }
-        }
-        .date-container div {
-            flex: 1;
-        }
+      /* Mobile Layout Adjustments */
+.date-container,
+.trip-type-container,
+.name-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 10px;
+}
+
+.date-container > div,
+.trip-type-container > div,
+.name-container > div {
+    flex: 1; /* Distribute space evenly */
+}
+
+/* Adjustments for Trip Type buttons */
+.trip-type-option {
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+/* Adjustments for Name Fields */
+.name-container > div {
+    min-width: calc(50% - 5px); /* Ensure at least 50% width with gap */
+}
     </style>
 </head>
 <body>
