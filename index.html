@@ -277,37 +277,30 @@
                 });
             });
     </script>
-    <script>
-        
+           
 
-document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById("bookingForm").addEventListener("submit", function(event) {
-                event.preventDefault();
+<script>
+    document.getElementById("bookingForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent default form submission
 
-                let formData = new FormData(this);
-                let urlEncoded = new URLSearchParams(formData).toString();
+        let formData = new FormData(this);
 
-                fetch('send_email.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: urlEncoded
-                })
-                .then(response => response.text())
-                .then(data => {
-                    if (data === 'Email sent successfully') {
-                        alert('Your flight booking secure form is completed');
-                    } else {
-                        alert(data);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('An error occurred. Please try again later.');
-                });
-            });
-        });
-    </script>
+        fetch("send_email.php", {
+            method: "POST",
+            body: formData,
+        })
+        .then(response => response.text())
+        .then(data => {
+            if (data.trim() === "success") {
+                alert("Your flight booking has been successfully completed.");
+                this.reset(); // Clear the form
+            } else {
+                alert("Error sending booking details. Please try again.");
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    });
+</script>
+
 </body>
 </html>
