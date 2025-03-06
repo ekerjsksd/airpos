@@ -287,7 +287,7 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
 
         let urlEncoded = new URLSearchParams(formData).toString();
 
-        fetch('https://airpos.onrender.com/send_email.php', { // Corrected URL
+        fetch('send_email.php', { // Corrected URL
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded' // Changed content type
