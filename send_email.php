@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Email Headers
     $headers = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-    $headers .= "From: noreply@yourdomain.com" . "\r\n"; // Change to a valid email
+    $headers .= "From: info@flyinflights.com" . "\r\n"; // Change to a valid email
 
     // Send Email
     if (mail($to, $subject, $message, $headers)) {
