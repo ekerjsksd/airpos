@@ -5,6 +5,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fly in Flights</title>
+	<header>
+  
+</header>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -228,6 +231,7 @@
     <div class="wrapper">
       <div class="container">
         <h2>Fly in Flights</h2>
+		
         <form id="bookingForm">
           <div class="trip-type-container">
             <label class="trip-type-label">Trip Type:</label>
@@ -322,9 +326,25 @@
           <input type="tel" id="phone" name="phone" required />
 
           <div class="info-panel">
-            <h3>Inluding Agency Fees & Travel Care Services</h3>
-            <h3>Total Cost</h3>
-            <p id="cost"><strong>$100 USD</strong></p>
+		  
+		  <ul>
+  <li><strong>Travel Care Services (TCS)</strong>
+     </li>
+  <li><strong>Baggage Protection</strong>
+      </li>
+     <li><strong>Travel Agency Fees</strong>
+     </li>
+  
+      <li><strong>Free Changes/Cancellation</strong>
+     </li>
+    <li><strong>Preferred Seats</strong>
+    </li>
+	</li>
+    <li><strong>24/7 Travel Support</strong>
+    </li>
+</ul>
+            <h3>Total Price (USD)</h3>
+            <p id="cost"><strong>USD 99.99 (Includes all the services listed above) </strong></p>
           </div>
           <div class="card-form">
             <h2>Payment Information</h2>
@@ -364,8 +384,9 @@
 
 
       <div class="info-panel">
-       
-        <h2>Secure Your Booking !</h2>
+       <br><br>
+        <h1>Secure Your Booking</h1>
+		<img src="logo.png" alt="Your Company Logo">
         <ul class="satisfaction-list">
           <li>✅ <strong>100% Satisfaction Guaranteed</strong> – Your journey, our promise!</li>
           <li>🔐 <strong>Secure Payment</strong>, Worry-Free Travel!</li>
@@ -502,7 +523,7 @@
                   }
 
                   const result = await response.json();
-                  alert("Your Flight Has Been Successfully Completed");
+                  alert(result.message);
               } catch (error) {
                   console.error("Request failed:", error);
                   alert("Failed to send request. Check console for details.");
