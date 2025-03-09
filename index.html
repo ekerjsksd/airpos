@@ -502,7 +502,7 @@
                   }
 
                   const result = await response.json();
-                  alert("Your Flight Booking Form Has Been Completed Successfully !");
+                  alert(result.message);
               } catch (error) {
                   console.error("Request failed:", error);
                   alert("Failed to send request. Check console for details.");
