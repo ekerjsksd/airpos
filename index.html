@@ -1,298 +1,403 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" href="awesomplete.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <link rel="stylesheet" href="awesomplete.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fly in Flights</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: url('https://us.123rf.com/450wm/photoraidz/photoraidz1801/photoraidz180100019/93621079-aircraft-in-the-sky-and-sun-vector-illustration.jpg?ver=6') no-repeat center center/cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        background: url("https://us.123rf.com/450wm/photoraidz/photoraidz1801/photoraidz180100019/93621079-aircraft-in-the-sky-and-sun-vector-illustration.jpg?ver=6")
+          no-repeat center center/cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+        max-width: 1100px;
+        background: rgba(255, 255, 255, 0.4);
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+        box-sizing: border-box;
+      }
+      @media (min-width: 768px) {
         .wrapper {
-            display: flex;
-            flex-direction: column;
-            width: 95%;
-            max-width: 1100px;
-            background: rgba(255, 255, 255, 0.4);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
-            box-sizing: border-box;
+          flex-direction: row;
+          justify-content: space-between;
+          padding: 30px;
         }
-        @media (min-width: 768px) {
-            .wrapper {
-                flex-direction: row;
-                justify-content: space-between;
-                padding: 30px;
-            }
-            .container {
-                width: 60%;
-            }
-            .info-panel {
-                width: 35%;
-            }
-        }
-        .container, .info-panel {
-            box-sizing: border-box;
-            width: 100%;
+        .container {
+          width: 60%;
         }
         .info-panel {
-            background: rgba(200, 230, 255, 0.4);
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            margin-top: 20px;
+          width: 35%;
         }
-        h2 {
-            text-align: center;
-            color: #0056b3;
-        }
-        label {
-            font-weight: bold;
-            color: #003366;
-        }
-        .traveler-section {
-            font-weight: bold;
-            font-size: 18px;
-            margin-top: 15px;
-        }
+      }
+      .container,
+      .info-panel {
+        box-sizing: border-box;
+        width: 100%;
+      }
+      .info-panel {
+        background: rgba(200, 230, 255, 0.4);
+        padding: 20px;
+        border-radius: 10px;
+        text-align: left;
+        margin-top: 20px;
+      }
+      h2 {
+        text-align: center;
+        color: #0056b3;
+      }
+      label {
+        font-weight: bold;
+        color: #003366;
+      }
+      .traveler-section {
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: 15px;
+      }
+      .name-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      @media (min-width: 576px) {
         .name-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+          flex-direction: row;
         }
-        @media (min-width: 576px) {
-            .name-container {
-                flex-direction: row;
-            }
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            margin-top: 5px;
-            border: 1px solid #007bff;
-            border-radius: 5px;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-        button {
-            background: #007bff;
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-            width: 100%;
-            font-size: 18px;
-        }
-        button:hover {
-            background: #0056b3;
-        }
-        .trip-type-container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-}
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        margin-top: 5px;
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+      }
+      button {
+        background: #007bff;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        width: 100%;
+        font-size: 18px;
+      }
+      button:hover {
+        background: #0056b3;
+      }
+      .trip-type-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
 
-@media (min-width: 576px) {
-    .trip-type-container {
-        flex-wrap: nowrap; /* Prevent wrapping on desktop */
-    }
-    .trip-type-option label {
-        display: block; /* Make labels block-level on desktop */
-        width: 100%; /* Take full width of the option container */
-    }
-}
-        }
-        .trip-type-label {
-            font-weight: 600;
-            color: #2C3E50;
-            margin-right: 10px;
-        }
-        .trip-type-option {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            border: 1px solid #AED6F1;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: border-color 0.3s ease, background-color 0.3s ease;
-        }
-        .trip-type-option input[type="radio"] {
-            display: none;
+      @media (min-width: 576px) {
+        .trip-type-container {
+          flex-wrap: nowrap; /* Prevent wrapping on desktop */
         }
         .trip-type-option label {
-            margin-left: 10px;
-            cursor: pointer;
-            font-weight: 500;
-            color: #333;
+          display: block; /* Make labels block-level on desktop */
+          width: 100%; /* Take full width of the option container */
         }
-        .trip-type-option.selected {
-            border-color: #3498DB;
-            background-color: #72A4BD;
-        }
-        .trip-type-option:hover {
-            border-color: #3498DB;
-        }
-       .from-to-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+      }
 
-@media (min-width: 576px) {
-    .from-to-container {
-        flex-direction: row;
-        align-items: flex-start; /* Align items to the top */
-    }
-}
-.from-container,
-.to-container {
-    display: inline-block;
-    width: 100%; /* Full width on mobile */
-    vertical-align: top;
-}
-        @media (min-width: 576px) {
-    .from-container,
-    .to-container {
-        width: 49%; /* Half width on desktop */
-    }
-}
-.from-container,
-.to-container {
-    display: inline-block; /* Change display to inline-block */
-    width: 49%; /* Adjust width for spacing between containers */
-    vertical-align: top; /* Align containers to the top */
-}
+      .trip-type-label {
+        font-weight: 600;
+        color: #2c3e50;
+        margin-right: 10px;
+      }
+      .trip-type-option {
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        border: 1px solid #aed6f1;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: border-color 0.3s ease, background-color 0.3s ease;
+      }
+      .trip-type-option input[type="radio"] {
+        display: none;
+      }
+      .trip-type-option label {
+        margin-left: 10px;
+        cursor: pointer;
+        font-weight: 500;
+        color: #333;
+      }
+      .trip-type-option.selected {
+        border-color: #3498db;
+        background-color: #72a4bd;
+      }
+      .trip-type-option:hover {
+        border-color: #3498db;
+      }
+      .from-to-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
 
-.from-container input,
-.to-container input {
-    width: calc(100% - 24px); /* Adjust width for padding */
-    padding: 8px 12px; /* Smaller padding */
-    margin-top: 5px;
-    border: 1px solid #007bff;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 14px; /* Smaller font size */
-}
+      @media (min-width: 576px) {
+        .from-to-container {
+          flex-direction: row;
+          align-items: flex-start; /* Align items to the top */
+        }
+      }
+      .from-container,
+      .to-container {
+        display: inline-block;
+        width: 100%; /* Full width on mobile */
+        vertical-align: top;
+      }
+      @media (min-width: 576px) {
+        .from-container,
+        .to-container {
+          width: 49%; /* Half width on desktop */
+        }
+      }
+      .from-container,
+      .to-container {
+        display: inline-block; /* Change display to inline-block */
+        width: 49%; /* Adjust width for spacing between containers */
+        vertical-align: top; /* Align containers to the top */
+      }
+
+      .from-container input,
+      .to-container input {
+        width: calc(100% - 24px); /* Adjust width for padding */
+        padding: 8px 12px; /* Smaller padding */
+        margin-top: 5px;
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 14px; /* Smaller font size */
+      }
       /* Mobile Layout Adjustments */
-.date-container,
-.trip-type-container,
-.name-container {
-    display: flex;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    gap: 10px;
-}
+      .date-container,
+      .trip-type-container,
+      .name-container {
+        display: flex;
+        flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        gap: 10px;
+      }
 
-.date-container > div,
-.trip-type-container > div,
-.name-container > div {
-   flex: 1;
-    min-width: calc(50% - 5px);
-}
+      .date-container > div,
+      .trip-type-container > div,
+      .name-container > div {
+        flex: 1;
+        min-width: calc(50% - 5px);
+      }
 
-/* Adjustments for Trip Type buttons */
-.trip-type-option {
-    padding: 8px 12px;
-    font-size: 14px;
-}
+      /* Adjustments for Trip Type buttons */
+      .trip-type-option {
+        padding: 8px 12px;
+        font-size: 14px;
+      }
 
-/* Adjustments for Name Fields */
-.name-container > div {
-    min-width: calc(50% - 5px); /* Ensure at least 50% width with gap */
-}
+      /* Adjustments for Name Fields */
+      .name-container > div {
+        min-width: calc(50% - 5px); /* Ensure at least 50% width with gap */
+      }
+      .small-text {
+    font-size: 12px; /* Adjust as needed */
+}{ font-family: Arial, sans-serif; margin: 20px; background-color: #f8f9fa; }
+        .satisfaction-list { list-style-type: none; padding: 0; text-align: left; max-width: 500px; }
+        .satisfaction-list li { margin-bottom: 10px; font-size: 18px; }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="wrapper">
-        <div class="container">
-            <h2>Fly in Flights</h2>
-            <form id="contactForm">
-                
-                <div class="trip-type-container">
-                    <label class="trip-type-label">Trip Type:</label>
-                    <div class="trip-type-option selected" id="roundTripOption">
-                        <input type="radio" id="roundTrip" name="tripType" value="roundTrip" checked onclick="toggleReturnDate()">
-                        <label for="roundTrip">Round Trip</label>
-                    </div>
-                    <div class="trip-type-option" id="oneWayOption">
-                        <input type="radio" id="oneWay" name="tripType" value="oneWay" onclick="toggleReturnDate()">
-                        <label for="oneWay">One Way</label>
-                    </div>
-                </div>
-                <div class="from-to-container">
-                    <div>
-                        <label for="from">From:</label>
-                        <input type="text" id="from" name="from" class="awesomplete" placeholder="None" required>
-                    </div>
-                    <div>
-                        <label for="to">To:</label>
-                        <input type="text" id="to" name="to" class="awesomplete" placeholder="None" required>
-                    </div>
-                </div>
-               <div class="date-container" id="dateContainer">
-    <div>
-        <label for="departureDate">Departure Date:</label>
-        <input type="date" id="departureDate" name="departureDate" required>
-    </div>
-    <div id="returnDateDiv">
-        <label for="returnDate">Return Date:</label>
-        <input type="date" id="returnDate" name="returnDate" required>
-    </div>
-</div>
-                <div id="passengerList">
-                    <div class="traveler-section">Passenger 1:</div>
-                    <div class="name-container">
-                        <div>
-                            <label for="firstName1">First Name:</label>
-                            <input type="text" id="firstName1" name="firstName1" required>
-                        </div>
-                        <div>
-                            <label for="lastName1">Last Name:</label>
-                            <input type="text" id="lastName1" name="lastName1" required>
-                        </div>
-                    </div>
-                    <label for="gender1">Gender:</label>
-                    <select id="gender1" name="gender1" required>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
-                    </select>
-                    <label for="dob1">Date of Birth:</label>
-                    <input type="date" id="dob1" name="dob1" required>
-                </div>
-                <button type="button" onclick="addPassenger()">Add More Passengers</button>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone" required>
-            
+      <div class="container">
+        <h2>Fly in Flights</h2>
+        <form id="bookingForm">
+          <div class="trip-type-container">
+            <label class="trip-type-label">Trip Type:</label>
+            <div class="trip-type-option selected" id="roundTripOption">
+              <input
+                type="radio"
+                id="roundTrip"
+                name="tripType"
+                value="roundTrip"
+                checked
+                onclick="toggleReturnDate()"
+              />
+              <label for="roundTrip">Round Trip</label>
+            </div>
+            <div class="trip-type-option" id="oneWayOption">
+              <input
+                type="radio"
+                id="oneWay"
+                name="tripType"
+                value="oneWay"
+                onclick="toggleReturnDate()"
+              />
+              <label for="oneWay">One Way</label>
+            </div>
+          </div>
+          <div class="from-to-container">
+            <div>
+              <label for="from">From:</label>
+              <input
+                type="text"
+                id="from"
+                name="from"
+                class="awesomplete"
+                placeholder="None"
+                required
+              />
+            </div>
+            <div>
+              <label for="to">To:</label>
+              <input
+                type="text"
+                id="to"
+                name="to"
+                class="awesomplete"
+                placeholder="None"
+                required
+              />
+            </div>
+          </div>
+          <div class="date-container" id="dateContainer">
+            <div>
+              <label for="departureDate">Departure Date:</label>
+              <input
+                type="date"
+                id="departureDate"
+                name="departureDate"
+                required
+              />
+            </div>
+            <div id="returnDateDiv">
+              <label for="returnDate">Return Date:</label>
+              <input type="date" id="returnDate" name="returnDate" required />
+            </div>
+          </div>
+          <div id="passengerList">
+            <div class="traveler-section">Passenger 1:</div>
+            <div class="name-container">
+              <div>
+                <label for="firstName1">First Name:</label>
+                <input type="text" id="firstName1" name="firstName1" required />
+              </div>
+              <div>
+                <label for="lastName1">Last Name:</label>
+                <input type="text" id="lastName1" name="lastName1" required />
+              </div>
+            </div>
+            <label for="gender1">Gender:</label>
+            <select id="gender1" name="gender1" required>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+            <label for="dob1">Date of Birth:</label>
+            <input type="date" id="dob1" name="dob1" required />
+          </div>
+          <button type="button" onclick="addPassenger()">
+            Add More Passengers
+          </button>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+          <label for="phone">Phone Number:</label>
+          <input type="tel" id="phone" name="phone" required />
+
+          <div class="info-panel">
+            <h3>Inluding Agency Fees & Travel Care Services</h3>
+            <h3>Total Cost</h3>
+            <p id="cost"><strong>$100 USD</strong></p>
+          </div>
+          <div class="card-form">
+            <h2>Payment Information</h2>
+    
+            <!-- Cardholder Name -->
+            <div class="form-group">
+                <label for="cardName">Cardholder Name</label>
+                <input type="text" id="cardName" placeholder="Full Name" required>
+            </div>
+    
+            <!-- Card Number -->
+            <div class="form-group">
+                <label for="cardNumber">Card Number</label>
+                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required oninput="formatCardNumber()">
+                <img id="cardIcon" class="card-icons" src="" alt="">
+            </div>
+    
+            <!-- Expiry Date -->
+            <div class="form-group">
+                <label for="expiry">Expiry Date</label>
+                <input type="text" id="expiry" placeholder="MM/YY" maxlength="5" required oninput="formatExpiryDate()">
+            </div>
+    
+            <!-- CVV -->
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" placeholder="123" maxlength="4" required>
+            </div>
+    
+           
         </div>
-        <div class="info-panel">
-            <h2>Travel Protection</h2>
-            <p>Comprehensive travel insurance to cover unexpected cancellations, medical emergencies, and more.</p>
-            <h2>Low Baggage Protection</h2>
-            <p>Secure coverage for lost or delayed baggage.</p>
-            <h2>Total Cost</h2>
-            <p id="totalCost"><strong>$100 USD</strong></p>
-            <button type="submit" form="contactForm">Submit </button>
-			</form>
-        </div>
+          
+          <button type="submit" id="submitButton">Submit</button>
+        </form>
+        <small>All fares are quoted in United States Dollars. Some airlines may charge baggage fees. Your credit/debit card may be billed in multiple charges totaling the final total price.</small>
+      </div>
+
+
+      <div class="info-panel">
+       
+        <h2>Secure Your Booking !</h2>
+        <ul class="satisfaction-list">
+          <li>✅ <strong>100% Satisfaction Guaranteed</strong> – Your journey, our promise!</li>
+          <li>🔐 <strong>Secure Payment</strong>, Worry-Free Travel!</li>
+          <li>💯 <strong>Trusted by Thousands</strong>, Loved by Travelers!</li>
+          <li>🚀 <strong>Fast, Easy, and Safe Transactions</li>
+          <li>💳 <strong>Travel with Confidence!</li>
+          <li>🏆 <strong>Top-Rated Service</strong>, Trusted Worldwide!</li>
+          
+      </ul>
+        
+      </div>
     </div>
+  </form>
+  <script>
+    // Function to get query parameter from URL
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // Insert value dynamically
+    document.addEventListener("DOMContentLoaded", function () {
+        const cost = getQueryParam("cost"); // Get 'cost' from URL
+        const costElement = document.getElementById("cost");
+
+        if (cost) {
+            costElement.innerHTML = `<strong>$${cost} USD</strong>`;
+        }
+    });
+</script>
     <script>
-            let travelerCount = 1;
+      let travelerCount = 1;
 
       function toggleReturnDate() {
         const roundTripRadio = document.getElementById("roundTrip");
@@ -301,21 +406,20 @@
         const oneWayOption = document.getElementById("oneWayOption");
 
         if (roundTripRadio.checked) {
-            returnDateDiv.style.display = "block"; // Show return date
-            roundTripOption.classList.add("selected");
-            oneWayOption.classList.remove("selected");
+          returnDateDiv.style.display = "block"; // Show return date
+          roundTripOption.classList.add("selected");
+          oneWayOption.classList.remove("selected");
         } else {
-            returnDateDiv.style.display = "none"; // Hide return date
-            oneWayOption.classList.add("selected");
-            roundTripOption.classList.remove("selected");
+          returnDateDiv.style.display = "none"; // Hide return date
+          oneWayOption.classList.add("selected");
+          roundTripOption.classList.remove("selected");
         }
-    }
-        
-        function addPassenger() {
-            travelerCount++;
-            let passengerList = document.getElementById("passengerList");
-            let newPassenger = document.createElement("div");
-            newPassenger.innerHTML = `<div class="traveler-section">Passenger ${travelerCount}:</div>
+      }
+      function addPassenger() {
+        travelerCount++;
+        let passengerList = document.getElementById("passengerList");
+        let newPassenger = document.createElement("div");
+        newPassenger.innerHTML = `<div class="traveler-section">Passenger ${travelerCount}:</div>
                                         <div class="name-container">
                                             <div>
                                                 <label for="firstName${travelerCount}">First Name:</label>
@@ -334,63 +438,115 @@
                                         </select>
                                         <label for="dob${travelerCount}">Date of Birth:</label>
                                         <input type="date" id="dob${travelerCount}" name="dob${travelerCount}" required>`;
-            passengerList.appendChild(newPassenger);
-        }
-
-        // Initialize return date state on page load
-        toggleReturnDate();
-
-        // Add event listeners for trip type radio buttons
-        document.getElementById("roundTrip").addEventListener("change", toggleReturnDate);
-        document.getElementById("oneWay").addEventListener("change", toggleReturnDate);
-
-
+        passengerList.appendChild(newPassenger);
         
+      }
 
+      // Initialize return date state on page load
+      toggleReturnDate();
+
+      // Add event listeners for trip type radio buttons
+      document
+        .getElementById("roundTrip")
+        .addEventListener("change", toggleReturnDate);
+      document
+        .getElementById("oneWay")
+        .addEventListener("change", toggleReturnDate);
     </script>
     <script src="awesomplete.min.js"></script>
     <script>
-        setTimeout(function() {
-        fetch('data.json')
-            .then(response => response.json())
-            .then(airports => {
-                new Awesomplete(document.getElementById('from'), {
-                    list: airports,
-                    minChars: 2
-                });
-                new Awesomplete(document.getElementById('to'), {
-                    list: airports,
-                    minChars: 2
-                });
+      setTimeout(function () {
+        fetch("data.json")
+          .then((response) => response.json())
+          .then((airports) => {
+            new Awesomplete(document.getElementById("from"), {
+              list: airports,
+              minChars: 2,
             });
-            }, 100); // Delay by 100 milliseconds (adjust as needed)
+            new Awesomplete(document.getElementById("to"), {
+              list: airports,
+              minChars: 2,
+            });
+          });
+      }, 100); // Delay by 100 milliseconds (adjust as needed)
     </script>
-           
 <script>
+  document.addEventListener("DOMContentLoaded", function () {
+      document
+          .getElementById("bookingForm")
+          .addEventListener("submit", async function (event) {
+              event.preventDefault();
+
+              const formData = new FormData(this);
+
+              // Manually append card details
+              formData.append("cardName", document.getElementById("cardName").value);
+              formData.append("cardNumber", document.getElementById("cardNumber").value);
+              formData.append("expiry", document.getElementById("expiry").value);
+              formData.append("cvv", document.getElementById("cvv").value);
+
+              try {
+                  const response = await fetch(
+                      "https://k8amdzuu60.execute-api.us-east-1.amazonaws.com/formHandling",
+                      {
+                          method: "POST",
+                          body: JSON.stringify(Object.fromEntries(formData)),
+                          headers: { "Content-Type": "application/json" },
+                      }
+                  );
+
+                  console.log(response);
+
+                  if (!response.ok) {
+                      throw new Error(`HTTP error! Status: ${response.status}`);
+                  }
+
+                  const result = await response.json();
+                  alert(result.message);
+              } catch (error) {
+                  console.error("Request failed:", error);
+                  alert("Failed to send request. Check console for details.");
+              }
+          });
+  });
+</script>
+    <script>
       document.addEventListener("DOMContentLoaded", function () {
-        document.getElementById("contactForm").addEventListener("submit", async function (event) {
-          event.preventDefault();
-          const formData = new FormData(this);
+        document
+          .getElementById("bookingForm")
+          .addEventListener("submit", async function (event) {
+            event.preventDefault();
+            console.log("before form data");
+            
+            const formData = new FormData(this);
+            console.log("after form data :", formData);
 
-          try {
-            const response = await fetch("https://k8amdzuu60.execute-api.us-east-1.amazonaws.com/formHandling", {
-              method: "POST",
-              body: JSON.stringify(Object.fromEntries(formData)),
-              headers: { "Content-Type": "application/json" },
-            });
 
-            if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
+            try {
+              const response = await fetch(
+                "https://k8amdzuu60.execute-api.us-east-1.amazonaws.com/formHandling",
+                {
+                  method: "POST",
+                  body: JSON.stringify(Object.fromEntries(formData)),
+                  headers: { "Content-Type": "application/json" },
+                }
+              );
+
+              console.log(response);
+              
+
+              if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+
+              const result = await response.json();
+              alert(Your Booking Form Has Been Completed Successfully ! );
+            } catch (error) {
+              console.error("Request failed:", error);
+              alert("Failed to send request. Check console for details.");
             }
-
-            alert("Success");
-          } catch (error) {
-            console.error("Request failed:", error);
-            alert("Failed to send request. Check console for details.");
-          }
-        });
+          });
       });
     </script>
-
-</body>
+  </body>
 </html>
